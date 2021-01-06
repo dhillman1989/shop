@@ -1,0 +1,20 @@
+.shopList {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  width: 900px;
+  margin: auto;
+
+  &__noresults {
+    margin: auto;
+    width: 50%;
+    font-size: 1.4rem;
+  }
+
+  &__emptyCartImage {
+    width: 100%;
+    display: block;
+    margin: auto;
+    margin-bottom: 4rem;
+  }
+}

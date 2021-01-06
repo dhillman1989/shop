@@ -1,0 +1,24 @@
+.shopList {
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 900px;
+  margin: auto;
+}
+
+.shopList__noresults {
+  margin: auto;
+  width: 50%;
+  font-size: 1.4rem;
+}
+
+.shopList__emptyCartImage {
+  width: 100%;
+  display: block;
+  margin: auto;
+  margin-bottom: 4rem;
+}
+/*# sourceMappingURL=shopList.css.map */
