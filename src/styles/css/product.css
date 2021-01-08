@@ -50,11 +50,10 @@
 }
 
 .product__addToBasket {
+  margin-top: 3rem;
   font-weight: 600;
-  color: #90c8c8;
   font-size: 2rem;
   border: 0;
-  background-color: transparent;
   cursor: pointer;
 }
 /*# sourceMappingURL=product.css.map */

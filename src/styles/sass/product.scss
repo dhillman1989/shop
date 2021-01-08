@@ -37,11 +37,10 @@
     height: 100%;
   }
   &__addToBasket {
+    margin-top: 3rem;
     font-weight: 600;
-    color: rgb(144, 200, 200);
     font-size: 2rem;
     border: 0;
-    background-color: transparent;
     cursor: pointer;
   }
 }

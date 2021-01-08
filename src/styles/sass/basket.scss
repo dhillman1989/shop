@@ -5,7 +5,7 @@
   align-items: stretch;
   z-index: 100;
   transform: translatex(-100%);
-  width: 200px;
+  width: 350px;
   min-height: 100vh;
   height: 100%;
   min-height: 100vh;
@@ -27,6 +27,7 @@
     height: 100%;
     width: 20px;
     transform: translateX(100%);
+    box-shadow: 0.5rem 0 2rem rgba(0, 0, 0, 0.5);
   }
   &__list {
     text-align: left;
@@ -34,12 +35,18 @@
     padding: 0;
     list-style-type: none;
     width: 100%;
+    max-width: 800px;
+    margin: auto;
     height: 100%;
   }
 
   &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin: 0;
-    padding: 0.4rem 1.2rem;
+    width: 100%;
+    padding: 2rem 1.2rem;
     background-color: rgba(144, 200, 200, 0.5);
   }
 
@@ -62,8 +69,42 @@
       color: rgba(207, 218, 218, 0.5);
     }
   }
+  &__btn {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-weight: 800;
+    font-size: 2rem;
+    margin-left: 5px;
+  }
+
+  &__btn .fa-trash {
+    font-size: 1rem;
+    transform: translatey(-0.25rem);
+  }
+
+  &__controls {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
   & p {
-    margin: 0 1rem;
+    margin: 0 auto 0 1rem;
+  }
+
+  & .price {
+    margin-left: auto;
+    margin-right: 3rem;
+  }
+
+  & span {
+    display: inline-block;
+  }
+
+  & .qty {
+    width: 3rem;
   }
 }
 
@@ -78,4 +119,8 @@
   left: 60%;
   transform: translatex(-50%) translatey(-50%);
   color: #fff;
+}
+
+.payNowButton {
+  padding: 3rem;
 }

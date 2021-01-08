@@ -10,7 +10,7 @@
   z-index: 100;
   -webkit-transform: translatex(-100%);
           transform: translatex(-100%);
-  width: 200px;
+  width: 350px;
   min-height: 100vh;
   height: 100%;
   min-height: 100vh;
@@ -44,6 +44,8 @@
   width: 20px;
   -webkit-transform: translateX(100%);
           transform: translateX(100%);
+  -webkit-box-shadow: 0.5rem 0 2rem rgba(0, 0, 0, 0.5);
+          box-shadow: 0.5rem 0 2rem rgba(0, 0, 0, 0.5);
 }
 
 .basket__list {
@@ -52,12 +54,24 @@
   padding: 0;
   list-style-type: none;
   width: 100%;
+  max-width: 800px;
+  margin: auto;
   height: 100%;
 }
 
 .basket__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin: 0;
-  padding: 0.4rem 1.2rem;
+  width: 100%;
+  padding: 2rem 1.2rem;
   background-color: rgba(144, 200, 200, 0.5);
 }
 
@@ -82,8 +96,49 @@
   color: rgba(207, 218, 218, 0.5);
 }
 
+.basket__btn {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-weight: 800;
+  font-size: 2rem;
+  margin-left: 5px;
+}
+
+.basket__btn .fa-trash {
+  font-size: 1rem;
+  -webkit-transform: translatey(-0.25rem);
+          transform: translatey(-0.25rem);
+}
+
+.basket__controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .basket p {
-  margin: 0 1rem;
+  margin: 0 auto 0 1rem;
+}
+
+.basket .price {
+  margin-left: auto;
+  margin-right: 3rem;
+}
+
+.basket span {
+  display: inline-block;
+}
+
+.basket .qty {
+  width: 3rem;
 }
 
 .visible {
@@ -99,5 +154,9 @@
   -webkit-transform: translatex(-50%) translatey(-50%);
           transform: translatex(-50%) translatey(-50%);
   color: #fff;
+}
+
+.payNowButton {
+  padding: 3rem;
 }
 /*# sourceMappingURL=basket.css.map */

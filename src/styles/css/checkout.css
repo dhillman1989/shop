@@ -1,0 +1,16 @@
+.checkout h1,
+.checkout p,
+.checkout ul {
+  margin-bottom: 2rem;
+}
+
+.checkout ul {
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+
+.checkout__image {
+  width: 5rem;
+  height: 5rem;
+}
+/*# sourceMappingURL=checkout.css.map */

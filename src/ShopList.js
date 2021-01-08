@@ -1,3 +1,5 @@
+import React, { useEffect } from "react";
+
 import "./styles/css/shopList.css";
 
 import emptyCart from "./images/undraw_empty_cart_co35.svg";
@@ -7,13 +9,12 @@ import Product from "./Product";
 
 function ShopList({ filter, addToBasket }) {
   let filteredStock = stock;
-  if (filter) {
-    filteredStock = stock.filter(
-      (p) =>
-        p.name.toUpperCase().includes(filter.toUpperCase()) ||
-        p.category.toUpperCase().includes(filter.toUpperCase())
-    );
-  }
+
+  useEffect(() => {
+    console.log("hello");
+  }, []);
+
+  //////////MAIN OUTPUT //////////
   return (
     <ul className="shopList">
       {filteredStock.length > 0 ? (

@@ -1,0 +1,17 @@
+.checkout {
+  & h1,
+  p,
+  ul {
+    margin-bottom: 2rem;
+  }
+
+  ul {
+    font-size: 1.3rem;
+    font-weight: 400;
+  }
+
+  &__image {
+    width: 5rem;
+    height: 5rem;
+  }
+}

@@ -1,0 +1,13 @@
+.productpage {
+  max-width: 500px;
+  margin: auto;
+}
+
+.productpage__image {
+  max-width: 30rem;
+}
+
+.productpage__price {
+  font-size: 2.5rem;
+}
+/*# sourceMappingURL=productpage.css.map */
