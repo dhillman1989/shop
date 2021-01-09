@@ -1,6 +1,6 @@
 import "./App.css";
-import React, { useState } from "react";
-import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
+import React, { Fragment, useState } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
 import ShopList from "./ShopList";
@@ -55,42 +55,44 @@ function App() {
 
   return (
     <div className="App">
-      <Basket
-        basket={basket}
-        adjustQuantity={(id, num) => adjustQuantity(id, num)}
-        removeAllOfItem={(id) => removeAllOfItem(id)}
-      />
-      <Search setFilter={(e) => setFilter(e.target.value)} />
       <BrowserRouter>
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={(props) => (
-              <ShopList
-                {...props}
-                searchFilter={filter}
-                addToBasket={(item) => addToBasket(item)}
-              />
-            )}
-          />
+        <Basket
+          basket={basket}
+          adjustQuantity={(id, num) => adjustQuantity(id, num)}
+          removeAllOfItem={(id) => removeAllOfItem(id)}
+        />
+        <Search setFilter={(value) => setFilter(value)} />
+        <Fragment>
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={(props) => (
+                <ShopList
+                  {...props}
+                  searchFilter={filter}
+                  addToBasket={(item) => addToBasket(item)}
+                />
+              )}
+            />
 
-          <Route
-            exact
-            path="/viewproduct/:id"
-            render={(props) => (
-              <ProductPage
-                {...props}
-                addToBasket={(item) => addToBasket(item)}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/checkout"
-            render={(props) => <Checkout {...props} basket={basket} />}
-          />
-        </Switch>
+            <Route
+              exact
+              path="/viewproduct/:id"
+              render={(props) => (
+                <ProductPage
+                  {...props}
+                  addToBasket={(item) => addToBasket(item)}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/checkout"
+              render={(props) => <Checkout {...props} basket={basket} />}
+            />
+          </Switch>
+        </Fragment>
       </BrowserRouter>
     </div>
   );

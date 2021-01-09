@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 
@@ -96,4 +96,4 @@ function Basket({ basket, adjustQuantity, removeAllOfItem }) {
   );
 }
 
-export default Basket;
+export default withRouter(Basket);

@@ -1,6 +1,6 @@
 import "./styles/css/product.css";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles({
@@ -63,4 +63,4 @@ function Product({ details, addToBasket }) {
   );
 }
 
-export default Product;
+export default withRouter(Product);

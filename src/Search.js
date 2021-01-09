@@ -10,7 +10,7 @@ function Search({ setFilter }) {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          setFilter(e);
+          setFilter(searchQuery);
         }}
       >
         <input
@@ -23,7 +23,9 @@ function Search({ setFilter }) {
             setSearchQuery(e.target.value);
           }}
         />
-        <button className="search__btn">Search</button>
+        <button type="submit" className="search__btn">
+          Search
+        </button>
       </form>
     </div>
   );
