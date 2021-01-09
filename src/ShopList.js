@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Button } from "@material-ui/core";
+
 import { withRouter } from "react-router-dom";
 import "./styles/css/shopList.css";
 
@@ -8,26 +9,26 @@ import emptyCart from "./images/undraw_empty_cart_co35.svg";
 import { stock } from "./stock";
 import Product from "./Product";
 
-function ShopList({ history, match, filter, addToBasket }) {
+function ShopList({ history, match, addToBasket }) {
   const [filteredStock, setFilteredStock] = useState(stock);
-  const matchFilter = match.params.filter || "";
 
   useEffect(() => {
-    matchFilter &&
-      matchFilter !== "" &&
-      setFilteredStock(
-        stock.filter(
-          (i) =>
-            i.name.includes(matchFilter) || i.category.includes(matchFilter)
-        )
-      );
-  }, [matchFilter]);
+    !match.params.filter
+      ? setFilteredStock(stock)
+      : setFilteredStock(
+          stock.filter(
+            (i) =>
+              i.name.includes(match.params.filter) ||
+              i.category.includes(match.params.filter)
+          )
+        );
+  }, [match]);
 
   //////////MAIN OUTPUT //////////
   return (
     <Fragment>
       <h1>
-        Showing {filteredStock.length} results for "{filter}"
+        Showing {filteredStock.length} results for "{match.params.filter}"
       </h1>
       <ul className="shopList">
         {filteredStock.length > 0 ? (

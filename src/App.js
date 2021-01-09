@@ -1,5 +1,6 @@
 import "./App.css";
 import React, { Fragment, useState } from "react";
+
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
@@ -75,12 +76,10 @@ function App() {
               )}
             />
             <Route
-              exact
               path="/search/:filter"
               render={(props) => (
                 <ShopList
                   {...props}
-                  searchFilter={filter}
                   addToBasket={(item) => addToBasket(item)}
                 />
               )}

@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import "./styles/css/search.css";
 
 function Search({ history, setFilter }) {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState();
 
   return (
     <div className="search">
