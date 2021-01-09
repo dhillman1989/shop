@@ -1,16 +1,18 @@
 import React, { useState } from "react";
-
+import { withRouter } from "react-router-dom";
 import "./styles/css/search.css";
 
-function Search({ setFilter }) {
+function Search({ history, setFilter }) {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
     <div className="search">
+      <button onClick={() => history.goBack()}>Go back</button>
       <form
         onSubmit={(e) => {
           e.preventDefault();
           setFilter(searchQuery);
+          history.push(`/search/${searchQuery}`);
         }}
       >
         <input
@@ -31,4 +33,4 @@ function Search({ setFilter }) {
   );
 }
 
-export default Search;
+export default withRouter(Search);

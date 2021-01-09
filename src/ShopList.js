@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
-
+import { Button } from "@material-ui/core";
+import { withRouter } from "react-router-dom";
 import "./styles/css/shopList.css";
 
 import emptyCart from "./images/undraw_empty_cart_co35.svg";
@@ -7,24 +8,26 @@ import emptyCart from "./images/undraw_empty_cart_co35.svg";
 import { stock } from "./stock";
 import Product from "./Product";
 
-function ShopList({ searchFilter, addToBasket }) {
+function ShopList({ history, match, filter, addToBasket }) {
   const [filteredStock, setFilteredStock] = useState(stock);
+  const matchFilter = match.params.filter || "";
 
   useEffect(() => {
-    searchFilter &&
+    matchFilter &&
+      matchFilter !== "" &&
       setFilteredStock(
         stock.filter(
           (i) =>
-            i.name.includes(searchFilter) || i.category.includes(searchFilter)
+            i.name.includes(matchFilter) || i.category.includes(matchFilter)
         )
       );
-  }, [searchFilter]);
+  }, [matchFilter]);
 
   //////////MAIN OUTPUT //////////
   return (
     <Fragment>
       <h1>
-        Showing {filteredStock.length} results for "{searchFilter}"
+        Showing {filteredStock.length} results for "{filter}"
       </h1>
       <ul className="shopList">
         {filteredStock.length > 0 ? (
@@ -42,7 +45,13 @@ function ShopList({ searchFilter, addToBasket }) {
               <h4>Oops!</h4> We didnt find anything that matched your search.
               Try changing your search criteria or look for another product.
             </p>
-            <a href="./">Show All Products</a>
+            <Button
+              onClick={() => {
+                history.push("/");
+              }}
+            >
+              Show All Products
+            </Button>
           </p>
         )}
       </ul>
@@ -50,4 +59,4 @@ function ShopList({ searchFilter, addToBasket }) {
   );
 }
 
-export default ShopList;
+export default withRouter(ShopList);

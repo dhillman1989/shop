@@ -70,12 +70,21 @@ function App() {
               render={(props) => (
                 <ShopList
                   {...props}
+                  addToBasket={(item) => addToBasket(item)}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/search/:filter"
+              render={(props) => (
+                <ShopList
+                  {...props}
                   searchFilter={filter}
                   addToBasket={(item) => addToBasket(item)}
                 />
               )}
             />
-
             <Route
               exact
               path="/viewproduct/:id"
