@@ -27,9 +27,14 @@ function ShopList({ history, match, addToBasket }) {
   //////////MAIN OUTPUT //////////
   return (
     <Fragment>
-      <h1>
-        Showing {filteredStock.length} results for "{match.params.filter}"
-      </h1>
+      {!match.params.filter ? (
+        <h1>Showing All Products</h1>
+      ) : (
+        <h1>
+          Showing {filteredStock.length} results for "{match.params.filter}"
+        </h1>
+      )}
+
       <ul className="shopList">
         {filteredStock.length > 0 ? (
           filteredStock.map((p) => (
