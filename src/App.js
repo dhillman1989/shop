@@ -12,16 +12,25 @@ import Checkout from "./Checkout";
 
 function App() {
   const [filter, setFilter] = useState();
-  const [basket, updateBasket] = useState([]);
+  const [basket, updateBasket] = useState(
+    JSON.parse(localStorage.getItem("basket")) || []
+  );
 
   ////ADD ITEM TO BASKET
-  const addToBasket = (item) => {
-    const index = basket.findIndex((i) => i.details.id == item.id);
-    if (index < 0) {
-      updateBasket([...basket, { details: item, quantity: 1, id: uuidv4() }]);
+  const addToBasket = async (item) => {
+    const index = basket.findIndex((i) => i.details.id === item.id);
+    if (index == -1) {
+      const newBasket = [
+        ...basket,
+        { details: item, quantity: 1, id: uuidv4() },
+      ];
+      localStorage.setItem("basket", JSON.stringify([...newBasket]));
+      updateBasket([...newBasket]);
     } else {
+      console.log(index);
       const newBasket = [...basket];
       newBasket[index].quantity = newBasket[index].quantity + 1;
+      localStorage.setItem("basket", JSON.stringify([...newBasket]));
       updateBasket([...newBasket]);
     }
   };
@@ -30,12 +39,14 @@ function App() {
   const adjustQuantity = (id, num) => {
     console.log(id);
     const index = basket.findIndex((i) => i.id == id);
-    if (index >= 0 && basket[index].quantity == 1) {
+    if (index >= 0 && basket[index].quantity == 1 && num == -1) {
       const newBasket = basket.filter((i) => i.id !== id);
+      localStorage.setItem("basket", JSON.stringify([...newBasket]));
       updateBasket([...newBasket]);
     } else {
       const newBasket = basket;
       newBasket[index].quantity = newBasket[index].quantity + num;
+      localStorage.setItem("basket", JSON.stringify([...newBasket]));
       updateBasket([...newBasket]);
     }
   };
@@ -48,6 +59,7 @@ function App() {
       )
     ) {
       const newBasket = basket.filter((i) => i.id !== id);
+      localStorage.setItem("basket", JSON.stringify([...newBasket]));
       updateBasket([...newBasket]);
     }
   };
