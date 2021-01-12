@@ -14,7 +14,7 @@ const useStyles = makeStyles({
   },
 });
 
-function Checkout({ match, basket }) {
+function Checkout({ history, basket }) {
   const classes = useStyles();
 
   return (
@@ -48,7 +48,12 @@ function Checkout({ match, basket }) {
                 .toFixed(2)}
             </li>
           </ul>
-          <Button className={classes.pay} variant="contained" color="primary">
+          <Button
+            onClick={() => history.push("./payments")}
+            className={classes.pay}
+            variant="contained"
+            color="primary"
+          >
             CHECKOUT AND PAY NOW
           </Button>
         </Fragment>

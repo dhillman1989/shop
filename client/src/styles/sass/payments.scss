@@ -1,0 +1,22 @@
+.payments {
+  width: var(--content-width);
+  margin: auto;
+  &__header {
+  }
+  &__form {
+    padding: 5rem;
+    display: flex;
+    flex-direction: column;
+  }
+  &__input {
+    padding: 1rem 2rem;
+    margin-bottom: 1rem;
+    border-radius: 5rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    outline: none;
+    &:focus {
+      border: 1px solid rgba(0, 0, 0, 1);
+      background-color: rgba(0, 0, 0, 0.01);
+    }
+  }
+}

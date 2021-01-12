@@ -1,4 +1,4 @@
-import "./App.css";
+import "./styles/css/App.css";
 import React, { Fragment, useState } from "react";
 
 import { BrowserRouter, Route, Switch } from "react-router-dom";
@@ -9,6 +9,7 @@ import ProductPage from "./ProductPage";
 import Search from "./Search";
 import Basket from "./Basket";
 import Checkout from "./Checkout";
+import Payments from "./Payments";
 
 function App() {
   const [filter, setFilter] = useState();
@@ -110,6 +111,11 @@ function App() {
               exact
               path="/checkout"
               render={(props) => <Checkout {...props} basket={basket} />}
+            />
+            <Route
+              exact
+              path="/payments"
+              render={(props) => <Payments {...props} />}
             />
           </Switch>
         </Fragment>
