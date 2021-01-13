@@ -52,11 +52,10 @@ function Product({ details, addToBasket }) {
         variant="contained"
         onClick={() => {
           addToBasket(details);
-        }}
-      >
+        }}>
         Add to Basket
       </Button>
-      <Link to={`./viewproduct/${details.id}`} className={classes.viewProduct}>
+      <Link to={`./viewproduct/${details._id}`} className={classes.viewProduct}>
         More Info
       </Link>
     </li>

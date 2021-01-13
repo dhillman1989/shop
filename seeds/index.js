@@ -15,7 +15,6 @@ mongoose
 
 const seedsArray = [
   {
-    id: "3289ewrwe23",
     name: "apple",
     category: "fruit",
     price: 0.6,
@@ -25,7 +24,6 @@ const seedsArray = [
       " Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus non reprehenderit dolor omnis modi, totam ipsa incidunt sit sapiente cumque amet cupiditate eius consequatur quod tempora corrupti eos veritatis ab? ",
   },
   {
-    id: "32893ewrwe923",
     name: "sugar",
     category: "pantry",
     price: 1.2,
@@ -35,7 +33,6 @@ const seedsArray = [
       " Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus non reprehenderit dolor omnis modi, totam ipsa incidunt sit sapiente cumque amet cupiditate eius consequatur quod tempora corrupti eos veritatis ab? ",
   },
   {
-    id: "32ewrwe923",
     name: "flour",
     category: "pantry",
     price: 1.4,
@@ -45,7 +42,6 @@ const seedsArray = [
       " Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus non reprehenderit dolor omnis modi, totam ipsa incidunt sit sapiente cumque amet cupiditate eius consequatur quod tempora corrupti eos veritatis ab? ",
   },
   {
-    id: "32893333338923",
     name: "cucumber",
     category: "vegetables",
     price: 0.9,
@@ -55,7 +51,6 @@ const seedsArray = [
       " Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus non reprehenderit dolor omnis modi, totam ipsa incidunt sit sapiente cumque amet cupiditate eius consequatur quod tempora corrupti eos veritatis ab? ",
   },
   {
-    id: "55667923",
     name: "ketchup",
     category: "sauces",
     price: 1.05,
@@ -65,7 +60,6 @@ const seedsArray = [
       " Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus non reprehenderit dolor omnis modi, totam ipsa incidunt sit sapiente cumque amet cupiditate eius consequatur quod tempora corrupti eos veritatis ab? ",
   },
   {
-    id: "354654632478923",
     name: "chicken",
     category: "meat",
     price: 4.5,
@@ -75,7 +69,6 @@ const seedsArray = [
       " Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus non reprehenderit dolor omnis modi, totam ipsa incidunt sit sapiente cumque amet cupiditate eius consequatur quod tempora corrupti eos veritatis ab? ",
   },
   {
-    id: "328932fdgcvx923",
     name: "sausage rolls",
     category: "bakery",
     price: 1.2,
@@ -85,7 +78,6 @@ const seedsArray = [
       " Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus non reprehenderit dolor omnis modi, totam ipsa incidunt sit sapiente cumque amet cupiditate eius consequatur quod tempora corrupti eos veritatis ab? ",
   },
   {
-    id: "328dfgdf923",
     name: "Coffee",
     category: "hot drinks",
     price: 1.9,
@@ -100,7 +92,7 @@ const seedProducts = async () => {
   await Product.deleteMany({});
   for (let i = 0; i < seedsArray.length; i++) {
     const product = new Product({
-      ...seedsArray[1],
+      ...seedsArray[i],
     });
     await product.save();
   }

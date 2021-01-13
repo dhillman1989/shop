@@ -6,10 +6,9 @@ import "./styles/css/shopList.css";
 
 import emptyCart from "./images/undraw_empty_cart_co35.svg";
 
-import { stock } from "./stock";
 import Product from "./Product";
 
-function ShopList({ history, match, addToBasket }) {
+function ShopList({ history, match, addToBasket, stock }) {
   const [filteredStock, setFilteredStock] = useState(stock);
 
   useEffect(() => {
@@ -36,29 +35,31 @@ function ShopList({ history, match, addToBasket }) {
       )}
 
       <ul className="shopList">
-        {filteredStock.length > 0 ? (
+        {filteredStock && filteredStock.length > 0 ? (
           filteredStock.map((p) => (
-            <Product details={p} addToBasket={addToBasket} />
+            <Product details={p} addToBasket={addToBasket} key={p.id} />
           ))
         ) : (
-          <p className="shopList__noresults">
-            <img
-              src={emptyCart}
-              className="shopList__emptyCartImage"
-              alt="empty trolley"
-            />
+          <Fragment>
+            <p className="shopList__noresults">
+              <img
+                src={emptyCart}
+                className="shopList__emptyCartImage"
+                alt="empty trolley"
+              />
+            </p>
+            <h4>Oops!</h4>
             <p>
-              <h4>Oops!</h4> We didnt find anything that matched your search.
-              Try changing your search criteria or look for another product.
+              We didnt find anything that matched your search. Try changing your
+              search criteria or look for another product.
             </p>
             <Button
               onClick={() => {
                 history.push("/");
-              }}
-            >
+              }}>
               Show All Products
             </Button>
-          </p>
+          </Fragment>
         )}
       </ul>
     </Fragment>

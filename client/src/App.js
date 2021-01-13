@@ -3,6 +3,7 @@ import React, { Fragment, useState } from "react";
 
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
 
 import ShopList from "./ShopList";
 import ProductPage from "./ProductPage";
@@ -12,14 +13,23 @@ import Checkout from "./Checkout";
 import Payments from "./Payments";
 
 function App() {
+  const [stock, setStock] = useState([]);
   const [filter, setFilter] = useState();
   const [basket, updateBasket] = useState(
     JSON.parse(localStorage.getItem("basket")) || []
   );
 
-  ////ADD ITEM TO BASKET
+  //CALL API TO FIND STOCK LIST
+  const getStock = async () => {
+    const res = await axios.get("/products");
+    setStock(res.data);
+  };
+
+  getStock();
+
+  ///ADD ITEM TO BASKET
   const addToBasket = async (item) => {
-    const index = basket.findIndex((i) => i.details.id === item.id);
+    const index = basket.findIndex((i) => i.details._id === item._id);
     if (index == -1) {
       const newBasket = [
         ...basket,
@@ -36,7 +46,7 @@ function App() {
     }
   };
 
-  ////adjust quantity (ADJUST BY 1 OR -1)
+  ///adjust quantity (ADJUST BY 1 OR -1)
   const adjustQuantity = (id, num) => {
     console.log(id);
     const index = basket.findIndex((i) => i.id == id);
@@ -52,7 +62,7 @@ function App() {
     }
   };
 
-  ////REMOVE ALL OF ITEM
+  ///REMOVE ALL OF ITEM
   const removeAllOfItem = (id) => {
     if (
       window.confirm(
@@ -65,7 +75,7 @@ function App() {
     }
   };
 
-  //////////MAIN OUTPUT /////////////
+  /// MAIN OUTPUT ///
 
   return (
     <div className="App">
@@ -84,6 +94,7 @@ function App() {
               render={(props) => (
                 <ShopList
                   {...props}
+                  stock={stock}
                   addToBasket={(item) => addToBasket(item)}
                 />
               )}
@@ -93,6 +104,7 @@ function App() {
               render={(props) => (
                 <ShopList
                   {...props}
+                  stock={[...stock]}
                   addToBasket={(item) => addToBasket(item)}
                 />
               )}
@@ -103,6 +115,7 @@ function App() {
               render={(props) => (
                 <ProductPage
                   {...props}
+                  stock={[...stock]}
                   addToBasket={(item) => addToBasket(item)}
                 />
               )}
@@ -115,7 +128,13 @@ function App() {
             <Route
               exact
               path="/payments"
-              render={(props) => <Payments {...props} />}
+              render={(props) => (
+                <Payments
+                  {...props}
+                  basket={basket}
+                  updateBasket={() => updateBasket()}
+                />
+              )}
             />
           </Switch>
         </Fragment>

@@ -21,10 +21,11 @@ const useStyles = makeStyles({
   },
 });
 
-function ProductPage({ match, addToBasket }) {
+function ProductPage({ match, addToBasket, stock }) {
   const classes = useStyles();
   const id = match.params.id;
-  const product = stock.find((p) => p.id === id);
+  const product = stock.find((p) => p._id === id);
+
   return (
     <div className="productpage">
       <h1>{`${product.name}`}</h1>
@@ -36,8 +37,7 @@ function ProductPage({ match, addToBasket }) {
         variant="contained"
         onClick={() => {
           addToBasket(product);
-        }}
-      >
+        }}>
         Add to Basket
       </Button>
     </div>

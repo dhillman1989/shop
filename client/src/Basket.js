@@ -35,7 +35,7 @@ function Basket({ basket, adjustQuantity, removeAllOfItem }) {
           {basket && basket.length > 0 ? (
             basket.map((item) => {
               return (
-                <li className="basket__item">
+                <li className="basket__item" key={item.id}>
                   <span className="qty">{item.quantity}</span>
                   <span className="item-name">{item.details.name}</span>
                   <span className="price">
@@ -44,21 +44,18 @@ function Basket({ basket, adjustQuantity, removeAllOfItem }) {
                   <div className="basket__controls">
                     <button
                       className="basket__btn"
-                      onClick={(id, num) => adjustQuantity(item.id, -1)}
-                    >
+                      onClick={(id, num) => adjustQuantity(item.id, -1)}>
                       -
                     </button>
                     <button
                       className="basket__btn"
-                      onClick={(id, num) => adjustQuantity(item.id, +1)}
-                    >
+                      onClick={(id, num) => adjustQuantity(item.id, +1)}>
                       +
                     </button>
 
                     <button
                       className="basket__btn"
-                      onClick={(id) => removeAllOfItem(item.id)}
-                    >
+                      onClick={(id) => removeAllOfItem(item.id)}>
                       <i className="fas fa-trash basket__btn"></i>
                     </button>
                   </div>
@@ -75,8 +72,7 @@ function Basket({ basket, adjustQuantity, removeAllOfItem }) {
             variant="contained"
             color="primary"
             className={classes.payNowButton}
-            onClick={() => setShowBasket(false)}
-          >
+            onClick={() => setShowBasket(false)}>
             Pay Now
           </Link>
         )}
@@ -86,8 +82,7 @@ function Basket({ basket, adjustQuantity, removeAllOfItem }) {
         id="basketTab"
         onClick={() => {
           setShowBasket(!showBasket);
-        }}
-      >
+        }}>
         <div className="basket__tab-icon">
           <i className="fas fa-shopping-basket basket-icon"></i>
         </div>

@@ -2,7 +2,7 @@ import React from "react";
 
 import "./styles/css/payments.css";
 
-function Payments({ history }) {
+function Payments({ history, basket, updateBasket }) {
   return (
     <div className="payments">
       <h1 className="payments__header">Please provide your payment details</h1>
@@ -11,10 +11,9 @@ function Payments({ history }) {
         onSubmit={(e) => {
           e.preventDefault();
           window.alert("your order has been processed");
-          //EMPTY BASKET FIRST ( ADD HERE )
+          localStorage.setItem("basket", JSON.stringify([]));
           history.push("/");
-        }}
-      >
+        }}>
         <input
           className="payments__input"
           name="name"
