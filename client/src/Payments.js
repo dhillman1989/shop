@@ -26,7 +26,7 @@ function Payments({ history, basket, updateBasket }) {
 
   return (
     <div className="payments">
-      <h1 className="payments__header">Please provide your payment details</h1>
+      <h1 className="payments__header">Please provide your payment details:</h1>
       <form
         className="payments__form"
         onSubmit={async (e) => {
