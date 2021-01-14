@@ -1,5 +1,6 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import Basket from "./Basket";
 
 import "./styles/css/payments.css";
 
@@ -18,6 +19,11 @@ function Payments({ history, basket, updateBasket }) {
     setInputForm({ ...inputForm, [e.target.name]: e.target.value });
   };
 
+  let totalCost = basket.reduce((acc, curr) => {
+    let itemCost = curr.details.price * curr.quantity;
+    return acc + itemCost;
+  }, 0);
+
   return (
     <div className="payments">
       <h1 className="payments__header">Please provide your payment details</h1>
@@ -25,8 +31,11 @@ function Payments({ history, basket, updateBasket }) {
         className="payments__form"
         onSubmit={async (e) => {
           e.preventDefault();
-          let newOrder = { basket, address };
+          let newOrder = { basket, address, totalCost };
           await axios.post("/orders", { ...newOrder });
+          const emptyBasket = [];
+          localStorage.setItem("basket", JSON.stringify(emptyBasket));
+          history.push("/");
         }}>
         <input
           className="payments__input"

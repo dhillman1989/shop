@@ -73,9 +73,9 @@ app.get("/orders", async (req, res) => {
 });
 
 app.post("/orders", async (req, res) => {
-  const { basket, address } = req.body;
+  const { basket, address, totalCost } = req.body;
   const date = new Date();
-  const newOrder = new Order({ items: basket, cost: 0.0, date, address });
+  const newOrder = new Order({ items: basket, cost: totalCost, date, address });
   await newOrder.save();
   res.send("ORDER SAVED");
 });
