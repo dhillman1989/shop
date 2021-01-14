@@ -1,5 +1,5 @@
 import "./styles/css/App.css";
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
@@ -22,10 +22,13 @@ function App() {
   //CALL API TO FIND STOCK LIST
   const getStock = async () => {
     const res = await axios.get("/products");
+    console.log(res.data);
     setStock(res.data);
   };
 
-  getStock();
+  useEffect(() => {
+    getStock();
+  }, []);
 
   ///ADD ITEM TO BASKET
   const addToBasket = async (item) => {

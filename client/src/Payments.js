@@ -1,43 +1,74 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 
 import "./styles/css/payments.css";
 
 function Payments({ history, basket, updateBasket }) {
+  const [inputForm, setInputForm] = useState({
+    name: "",
+    cardnumber: "",
+    expiry: "",
+    securitynum: "",
+    address: "",
+  });
+  const { name, cardnumber, expiry, securitynum, address } = inputForm;
+
+  //control inputs
+  const setInputs = (e) => {
+    setInputForm({ ...inputForm, [e.target.name]: e.target.value });
+  };
+
   return (
     <div className="payments">
       <h1 className="payments__header">Please provide your payment details</h1>
       <form
         className="payments__form"
-        onSubmit={(e) => {
+        onSubmit={async (e) => {
           e.preventDefault();
-          window.alert("your order has been processed");
-          localStorage.setItem("basket", JSON.stringify([]));
-          history.push("/");
+          let newOrder = { basket, address };
+          await axios.post("/orders", { ...newOrder });
         }}>
         <input
           className="payments__input"
           name="name"
           id="name"
+          onChange={(e) => setInputs(e)}
+          value={inputForm.name}
           placeholder="Name (as shown on card)"
         />
         <input
           className="payments__input"
           name="cardnumber"
           id="cardnumber"
+          onChange={(e) => setInputs(e)}
+          value={inputForm.cardnumber}
           placeholder="Card Number (eg. 1234 0000 1010 2323)"
         />
         <input
           className="payments__input"
           name="expiry"
           id="expiry"
+          onChange={(e) => setInputs(e)}
+          value={inputForm.expiry}
           placeholder="Expiry Date (MM/YY)"
         />
         <input
           type="password"
           className="payments__input"
-          name="securtiynum"
+          name="securitynum"
           id="securitynum"
+          onChange={(e) => setInputs(e)}
+          value={inputForm.securitynum}
           placeholder="Security Number (usually the last 3 digits on the signature strip)"
+        />
+        <h2>Delivery Address</h2>
+        <input
+          className="payments__input"
+          name="address"
+          id="address"
+          onChange={(e) => setInputs(e)}
+          value={inputForm.address}
+          placeholder="Delivery Address"
         />
         <button className="payments__input">Submit Payment</button>
       </form>

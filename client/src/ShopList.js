@@ -21,7 +21,7 @@ function ShopList({ history, match, addToBasket, stock }) {
               i.category.includes(match.params.filter)
           )
         );
-  }, [match]);
+  }, [match.params.filter, stock]);
 
   //////////MAIN OUTPUT //////////
   return (
