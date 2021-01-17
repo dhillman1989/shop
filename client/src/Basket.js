@@ -24,7 +24,7 @@ const useStyles = makeStyles({
   },
 });
 
-function Basket({ basket, adjustQuantity, removeAllOfItem }) {
+function Basket({ basket, adjustQuantity, removeAllOfItem, totalCost }) {
   const [showBasket, setShowBasket] = useState(false);
   const classes = useStyles();
   return (
@@ -63,8 +63,8 @@ function Basket({ basket, adjustQuantity, removeAllOfItem }) {
               );
             })
           ) : (
-            <p>Empty! Click + on an item to add to basket</p>
-          )}
+              <p>Empty! Click + on an item to add to basket</p>
+            )}
         </ul>
         {!basket.length <= 0 && (
           <Link

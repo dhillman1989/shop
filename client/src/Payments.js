@@ -4,7 +4,7 @@ import Basket from "./Basket";
 
 import "./styles/css/payments.css";
 
-function Payments({ history, basket, updateBasket }) {
+function Payments({ history, basket, updateBasket, totalCost }) {
   const [inputForm, setInputForm] = useState({
     name: "",
     cardnumber: "",
@@ -19,10 +19,7 @@ function Payments({ history, basket, updateBasket }) {
     setInputForm({ ...inputForm, [e.target.name]: e.target.value });
   };
 
-  let totalCost = basket.reduce((acc, curr) => {
-    let itemCost = curr.details.price * curr.quantity;
-    return acc + itemCost;
-  }, 0);
+
 
   return (
     <div className="payments">

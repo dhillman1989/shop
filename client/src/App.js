@@ -19,6 +19,12 @@ function App() {
     JSON.parse(localStorage.getItem("basket")) || []
   );
 
+  //TOTAL COST OF BASKET
+  let totalCost = basket.reduce((acc, curr) => {
+    let itemCost = curr.details.price * curr.quantity;
+    return acc + itemCost;
+  }, 0);
+
   //CALL API TO FIND STOCK LIST
   const getStock = async () => {
     const res = await axios.get("/products");
@@ -85,6 +91,7 @@ function App() {
       <BrowserRouter>
         <Basket
           basket={basket}
+          totalCost={totalCost}
           adjustQuantity={(id, num) => adjustQuantity(id, num)}
           removeAllOfItem={(id) => removeAllOfItem(id)}
         />
@@ -135,6 +142,7 @@ function App() {
                 <Payments
                   {...props}
                   basket={basket}
+                  totalCost={totalCost}
                   updateBasket={() => updateBasket()}
                 />
               )}
